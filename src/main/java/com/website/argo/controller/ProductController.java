@@ -1,5 +1,7 @@
 package com.website.argo.controller;
 
+import com.website.argo.dto.ProductDto;
+import com.website.argo.mapper.ProductMapper;
 import com.website.argo.service.ProductService;
 import com.website.argo.entity.Product;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +18,13 @@ public class ProductController {
 
     //@Qualifier("dummyProductServiceImpl")
     private final ProductService productService;
+    private final ProductMapper productMapper;
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.findAll();
+    public List<ProductDto> getAllProducts() {
+        return productService.findAll()
+                .stream()
+                .map(product -> productMapper.mapToDto(product)).toList();
+
     }
 }

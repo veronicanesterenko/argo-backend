@@ -12,18 +12,12 @@ create table if not exists users
     email        varchar(255) NOT NULL UNIQUE
 );
 
-create table if not exists producer
+create table if not exists brand
 (
     id           bigserial primary key,
-    name         varchar(50)  NOT NULL UNIQUE
-
+    name         varchar(50)  NOT NULL UNIQUE,
+    city         varchar
 );
-
-create table if not exists country
-(
-    id           bigserial primary key,
-    name         varchar(50)  NOT NULL UNIQUE
-  );
 
   create table if not exists category
   (
@@ -35,24 +29,31 @@ create table if not exists country
   (
       id                  bigserial primary key,
       name                varchar(30)  NOT NULL,
-      producer_id         bigint,
-      country_id          bigint,
-      category_id         bigint,
+      brand_id            bigint,
       item_number         varchar(50) NOT NULL UNIQUE,
-      short_description   varchar(500)  NOT NULL,
-      full_description    varchar    NOT NULL,
-      main_image          bytea  NOT NULL,
+      main_image          bytea,
       supplement_facts    varchar NOT NULL UNIQUE,
       score               bigint,
-      foreign key (producer_id) references producer (id),
-      foreign key (country_id) references country (id),
-      foreign key (category_id) references category (id)
+      short_description   varchar(500)  NOT NULL,
+      full_description    varchar    NOT NULL,
+      quantity            varchar,
+      foreign key (brand_id) references brand (id)
   );
+
+  create table if not exists category_to_product
+  (
+      id           bigserial primary key,
+      product_id   bigint,
+      category_id  bigint,
+      foreign key (product_id) references product (id),
+      foreign key (category_id) references category (id)
+    );
 
   create table if not exists image
   (
       id            bigserial primary key,
       product_id    bigint,
+      content       bytea  NOT NULL,
       foreign key (product_id) references product (id)
   );
 
@@ -60,8 +61,8 @@ create table if not exists country
   (
        id            bigserial primary key,
        product_id    bigint,
-       users_id      bigint,
+       user_id      bigint,
        content       varchar(500),
-       foreign key (users_id) references users (id),
+       foreign key (user_id) references users (id),
        foreign key (product_id) references product (id)
   )

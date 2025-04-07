@@ -1,16 +1,20 @@
 package com.website.argo.entity;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "category")
-public class Category {
+public class Brand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +23,8 @@ public class Category {
 
     private String name;
 
-    @ManyToMany(mappedBy = "categoryList")
+    @OneToMany(mappedBy = "brand")
     private List<Product> productList;
+
+    private String city;
 }

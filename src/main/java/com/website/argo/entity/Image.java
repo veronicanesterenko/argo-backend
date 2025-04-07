@@ -1,7 +1,11 @@
 package com.website.argo.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class Image {
 
@@ -13,4 +17,6 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
+
+    private byte[] content;
 }
