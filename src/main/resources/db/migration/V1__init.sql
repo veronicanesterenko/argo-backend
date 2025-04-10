@@ -16,7 +16,9 @@ create table if not exists brand
 (
     id           bigserial primary key,
     name         varchar(50)  NOT NULL UNIQUE,
-    city         varchar
+    city         varchar,
+    brand_logo   bytea,
+    brand_info   varchar
 );
 
   create table if not exists category

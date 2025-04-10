@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,4 +20,15 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findAll() {
       return productRepository.findAll();
     }
+
+    @Override
+    public Optional<Product> findById(Long productId) {
+        return productRepository.findById(productId);
+    }
+
+    @Override
+    @Transactional
+    public void save(Product product) { productRepository.save(product);}
+
+
 }
