@@ -35,6 +35,7 @@ allprojects {
 		implementation 'org.flywaydb:flyway-database-postgresql'
 		implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0'
 		implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+		implementation 'com.diffplug.spotless:spotless-plugin-gradle:7.0.2'
 
 		compileOnly 'org.projectlombok:lombok'
 		runtimeOnly 'org.postgresql:postgresql'

@@ -30,7 +30,7 @@ create table if not exists brand
   create table if not exists product
   (
       id                  bigserial primary key,
-      name                varchar(30)  NOT NULL,
+      name                varchar(80)  NOT NULL,
       brand_id            bigint,
       item_number         varchar(50) NOT NULL UNIQUE,
       main_image          bytea,
