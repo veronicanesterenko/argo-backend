@@ -35,19 +35,19 @@ public class ProductController {
         return productService.findAll(category, PageRequest.of(page, size));
     }
 
-    @GetMapping("/{productId}")
-    public ProductDto getProduct(@PathVariable Long productId) {
-      Product product = productService.findById(productId)
-                .orElseThrow(() -> new EntityNotFoundException("Product with id = " + productId + " not found"));
-      return productMapper.toProductDto(product);
+    @GetMapping("/{id}")
+    public ProductDto getProduct(@PathVariable Long id) {
+      return productService.findById(id);
     }
 
     @PostMapping
     public void createProduct(@RequestBody ProductCreatedEditDto productCreatedEditDto) {
         Product product = productMapper.toProduct(productCreatedEditDto);
         productService.save(product);
-
     }
 
-
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable Long id) {
+        productService.delete(id);
+    }
 }

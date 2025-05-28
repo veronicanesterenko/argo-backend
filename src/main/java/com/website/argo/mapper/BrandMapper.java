@@ -13,4 +13,5 @@ public interface BrandMapper {
     BrandDto toBrandDto(Brand brand);
 
     Brand toBrand(BrandCreateEditDto brandCreateEditDto);
+
 }

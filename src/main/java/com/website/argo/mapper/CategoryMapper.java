@@ -1,5 +1,6 @@
 package com.website.argo.mapper;
 
+import com.website.argo.dto.CategoryCreateEditDto;
 import com.website.argo.dto.CategoryDto;
 import com.website.argo.entity.Category;
 import com.website.argo.entity.Product;
@@ -20,4 +21,6 @@ public interface CategoryMapper {
     default List<String> productListToString(List<Product> productList) {
         return productList.stream().map(Product::getName).toList();
     }
+
+    Category toCategory(CategoryCreateEditDto categoryCreateEditDto);
 }

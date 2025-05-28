@@ -27,4 +27,10 @@ public class Brand {
     private List<Product> productList;
 
     private String city;
+
+    @Column(name = "brand_logo")
+    private byte[] brandLogo;
+
+    @Column(name = "brand_info")
+    private String brandInfo;
 }

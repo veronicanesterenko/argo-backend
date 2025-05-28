@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,13 +36,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> findById(Long productId) {
-        return productRepository.findById(productId);
+    public ProductDto findById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Product with id = " + id + " not found"));
+        return productMapper.toProductDto(product);
+
     }
 
     @Override
     @Transactional
     public void save(Product product) { productRepository.save(product);}
 
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        productRepository.deleteById(id);
+    }
 
 }

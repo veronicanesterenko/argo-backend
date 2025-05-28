@@ -11,4 +11,6 @@ public class BrandDto {
     private Long id;
     private String name;
     private String city;
+    private byte[] brandLogo;
+    private String brandInfo;
 }
